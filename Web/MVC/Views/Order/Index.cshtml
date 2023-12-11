@@ -1,0 +1,38 @@
+﻿@model MVC.ViewModels.OrderViewModels.OrderIndexViewModel
+<head>
+    <link rel="stylesheet" href="~/css/orders.css">
+</head>
+<p>Total Orders: @Model.Count</p>
+
+<div class="table100 ver3 m-b-110">
+    <div class="table100-head">
+        <table>
+            <thead>
+                <tr class="row100 head">
+                    <th class="cell100 column1">Total Price</th>
+                    <th class="cell100 column2">Country</th>
+                    <th class="cell100 column3">State</th>
+                    <th class="cell100 column4">Email</th>
+                    <th class="cell100 column5">Zip Code</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="table100-body js-pscroll">
+        <table>
+            <tbody>
+                @foreach (var order in Model.Orders)
+                {
+                        <tr class="row100 body">
+                        <td class="cell100 column1">@order.TotalPrice</td>
+                        <td class="cell100 column2">@order.Country</td>
+                        <td class="cell100 column3">@order.State</td>
+                        <td class="cell100 column4">@order.EmailAddress</td>
+                        <td class="cell100 column5">@order.ZipCode</td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

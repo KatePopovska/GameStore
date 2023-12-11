@@ -1,0 +1,58 @@
+﻿@model MVC.ViewModels.CatalogGame
+
+<link rel="stylesheet" href="~/css/product.css">
+<div class="container page-wrapper">
+    <div class="page-inner">
+        <div class="row">
+            <div class="el-wrapper">
+                <a asp-controller="Catalog" asp-action="Detail" asp-route-id="@Model.Id">
+                <div class="box-up">
+                    <img class="img" src="@Model.PictureUrl" alt="">
+                    <div class="img-info">
+                        <div class="info-inner">
+                            <span class="p-name">@Model.Title</span>
+                        </div>
+                        <div class="InStock">In stock: <span class="stock">@Model.InStock.ToString()</span></div>
+                    </div>
+                </div>
+                </a>
+                <div class="box-down">
+                    <div class="h-bg">
+                        <div class="h-bg-inner"></div>
+                    </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <!-- User is authenticated, show "Add to Cart" button -->
+                        <form asp-controller="Basket" asp-action="AddToBasket" method="post">
+                            <input type="hidden" name="productId" value="@Model.Id" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <input type="hidden" name="productName" value="@Model.Title" />
+                            <input type="hidden" name="price" value="@Model.Price" />
+                            <input type="hidden" name="pictureUrl" value="@Model.PictureUrl" />
+
+                            <button type="submit" class="cart">
+                                <span class="price">@Model.Price.ToString("N2")$</span>
+                                <span class="add-to-cart">
+                                    <span class="txt">Add in cart</span>
+                                </span>
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <!-- User is not authenticated, show "Login" button -->
+                        <form asp-controller="Account" asp-action="SignIn">
+                            <button type="submit" class="cart">
+                                <span class="price">@Model.Price.ToString("N2")$</span>
+                                <span class="add-to-cart">
+                                    <span class="txt">Login to add in cart</span>
+                                </span>
+                            </button>
+                            </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

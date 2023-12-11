@@ -1,0 +1,43 @@
+﻿@model MVC.ViewModels.CatalogViewModels.IndexViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/Filters.css">
+</head>
+<section class="esh-catalog-filters">
+    <div class="container">
+        <form asp-action="Index" asp-controller="Catalog" method="post">
+            <label class="esh-catalog-label" data-title="genres">
+                <select asp-for="GenreFilterApplied" asp-items="@Model.Genres" class="esh-catalog-filter"></select>
+                <button type="submit" class="btn btn-primary">Apply Filter</button>
+            </label>
+        </form>
+        <form asp-action="Index" asp-controller="Catalog" method="post">
+            <button type="submit" name="CancelFilters" value="true" class="btn btn-secondary">Cancel Filters</button>
+        </form>
+    </div>
+</section>
+@if (Model.Games.Count() > 0)
+{
+    <partial name="_pagination" for="PaginationInfo" />
+
+    <div class="esh-catalog-items row">
+        @foreach (var catalogItem in Model.Games)
+        {
+            <div class="esh-catalog-item col-md-4">
+                <partial name="_product" model="catalogItem" />
+            </div>
+        }
+    </div>
+
+    <partial name="_pagination" for="PaginationInfo" />
+}
+else
+{
+    <div class="esh-catalog-items row">
+        THERE ARE NO RESULTS THAT MATCH YOUR SEARCH
+    </div>
+}

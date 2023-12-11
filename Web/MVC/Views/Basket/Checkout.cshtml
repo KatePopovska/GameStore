@@ -1,0 +1,65 @@
+﻿@model MVC.ViewModels.BasketViewModel.BasketCheckoutModel
+
+<div class="col-md-8 order-md-1">
+    <h4 class="mb-3">Billing address</h4>
+    <form asp-controller="Basket" asp-action="ConfirmationCheckout" method="post" class="needs-validation" novalidate>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="givenName">Given name</label>
+                <input type="text" class="form-control" id="givenName" name="givenName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Valid given name is required.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="familyName">Family name</label>
+                <input type="text" class="form-control" id="familyName" name="familyName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Valid family name is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email">Email <span class="text-muted">(Optional)</span></label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
+            <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+            </div>
+        </div>
+         <div class="mb-3">
+            <label for="userName">User Name <span class="text-muted">(Optional)</span></label>
+            <input type="text" class="form-control" id="userName" name="userName">
+            <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" id="country" name="country" placeholder="Country" required>
+            <div class="invalid-feedback">
+                Please enter your country.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="state">State</label>
+            <input type="text" class="form-control" id="state" name="state" placeholder="State" required>
+            <div class="invalid-feedback">
+                Please enter your state.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="zipCode">Zip Code</label>
+            <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code" required>
+            <div class="invalid-feedback">
+                Please enter your zip code.
+            </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+    </form>
+</div>
+
